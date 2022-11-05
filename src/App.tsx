@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './providers'
 import { Auth, Books } from './pages'
 import { Layout, RequireAuth } from './components'
@@ -19,6 +19,7 @@ function App() {
           />
         </Route>
         <Route element={<Auth />} path="/auth" />
+        <Route element={<Navigate to="/books" />} path="*" />
       </Routes>
     </AuthProvider>
   )
