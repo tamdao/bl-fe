@@ -1,12 +1,19 @@
-import { SimpleGrid } from '@mantine/core'
+import { SimpleGrid, TextInput } from '@mantine/core'
 import React from 'react'
+import { IconSearch } from '@tabler/icons'
 import { HeaderSimple } from '../../components'
 import { BookCard } from './book-card/book-card'
+import { BooksAction } from './books-action/books-action'
 
 export function Books() {
   return (
     <div>
-      <HeaderSimple title="Book Library" />
+      <HeaderSimple title="Book Library" rightComponent={<BooksAction />} />
+      <TextInput
+        placeholder="Search book by name"
+        icon={<IconSearch size={14} />}
+        mt="lg"
+      />
       <SimpleGrid
         my="lg"
         cols={5}

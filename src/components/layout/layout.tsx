@@ -5,7 +5,11 @@ import { NavbarSimple } from '../navbar/navbar'
 
 export function Layout() {
   return (
-    <AppShell padding="md" navbar={<NavbarSimple />}>
+    <AppShell
+      padding="md"
+      navbarOffsetBreakpoint="sm"
+      navbar={<NavbarSimple />}
+    >
       <Outlet />
     </AppShell>
   )

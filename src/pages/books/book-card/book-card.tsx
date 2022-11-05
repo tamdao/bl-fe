@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 export function BookCard(props: BookCardProps) {
-  const { classes, theme } = useStyles()
+  const { classes } = useStyles()
   const { title, author, gender, thumbnailUrl } = props
   return (
     <div className={classes.container}>
