@@ -2,6 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Installation
+
+```bash
+$ yarn install
+```
+
+## Setup ENV
+Rename `.env.example` to `.env` and set value for `PORT` and `REACT_APP_API_URL`
+
 ## Available Scripts
 
 In the project directory, you can run:
