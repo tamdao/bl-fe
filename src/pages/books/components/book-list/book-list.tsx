@@ -6,6 +6,7 @@ import { BookItem } from '../book-item/book-item'
 
 interface BookListProps {
   books: Book[]
+  onShowBookDetails: (book: Book) => void
 }
 
 const useStyles = createStyles((theme) => ({
@@ -20,7 +21,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 export function BookList(props: BookListProps) {
-  const { books } = props
+  const { books, onShowBookDetails } = props
   const { classes } = useStyles()
   const matches = useMediaQuery('(min-width: 768px)')
 
@@ -36,7 +37,7 @@ export function BookList(props: BookListProps) {
       </thead>
       <tbody>
         {books.map((book) => (
-          <tr key={book.id}>
+          <tr key={book.id} onClick={() => onShowBookDetails(book)}>
             <td>
               <BookItem {...book} />
             </td>

@@ -5,10 +5,11 @@ import { BookCard } from '../book-card/book-card'
 
 interface BookListProps {
   books: Book[]
+  onShowBookDetails: (book: Book) => void
 }
 
 export function BookGrid(props: BookListProps) {
-  const { books } = props
+  const { books, onShowBookDetails } = props
 
   return (
     <SimpleGrid
@@ -22,7 +23,11 @@ export function BookGrid(props: BookListProps) {
       ]}
     >
       {books.map((book) => (
-        <BookCard key={book.id} {...book} />
+        <BookCard
+          key={book.id}
+          {...book}
+          onClick={() => onShowBookDetails(book)}
+        />
       ))}
     </SimpleGrid>
   )

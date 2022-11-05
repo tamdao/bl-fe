@@ -1,6 +1,9 @@
 import {
+  Button,
   createStyles,
+  Group,
   LoadingOverlay,
+  Modal,
   Pagination,
   TextInput,
 } from '@mantine/core'
@@ -12,8 +15,10 @@ import { useToggle } from '@mantine/hooks'
 import { BookGrid } from './components/book-grid/book-grid'
 import { BookList } from './components/book-list/book-list'
 import { useSearchParams } from 'react-router-dom'
-import { ChangeEvent, useCallback } from 'react'
+import { ChangeEvent, useCallback, useState } from 'react'
 import { useGetBooks } from './hooks'
+import { Book } from './types'
+import { BookDetails } from './components/book-details/book-details'
 
 const useStyles = createStyles((theme) => ({
   content: {
@@ -24,6 +29,8 @@ const useStyles = createStyles((theme) => ({
 export function Books() {
   const { classes } = useStyles()
   const [layout, toggleLayout] = useToggle(['grid', 'list'])
+  const [selectedBook, setSelectedBook] = useState<Book>()
+  const [bookModalOpened, setBookModalOpened] = useState(false)
 
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -51,6 +58,16 @@ export function Books() {
     [searchParams]
   )
 
+  const onHideBookDetails = useCallback(() => {
+    setSelectedBook(undefined)
+    setBookModalOpened(false)
+  }, [])
+
+  const onShowBookDetails = useCallback((book: Book) => {
+    setSelectedBook(book)
+    setBookModalOpened(true)
+  }, [])
+
   return (
     <div>
       <HeaderSimple
@@ -67,8 +84,18 @@ export function Books() {
         defaultValue={searchParams.get('query') || ''}
       />
       <div className={classes.content}>
-        {layout === 'grid' && <BookGrid books={data?.items || []} />}
-        {layout === 'list' && <BookList books={data?.items || []} />}
+        {layout === 'grid' && (
+          <BookGrid
+            books={data?.items || []}
+            onShowBookDetails={onShowBookDetails}
+          />
+        )}
+        {layout === 'list' && (
+          <BookList
+            books={data?.items || []}
+            onShowBookDetails={onShowBookDetails}
+          />
+        )}
         {pagination && !!(data?.items || []).length && (
           <Pagination
             total={pagination.totalPages || 0}
@@ -78,6 +105,19 @@ export function Books() {
         )}
         <LoadingOverlay visible={isLoading} overlayBlur={2} />
       </div>
+      <Modal
+        opened={bookModalOpened}
+        onClose={onHideBookDetails}
+        withCloseButton={false}
+      >
+        {selectedBook && <BookDetails {...selectedBook} />}
+        <Group position="center">
+          <Button onClick={onHideBookDetails} variant="default">
+            Close
+          </Button>
+          <Button onClick={onHideBookDetails}>Continue Reading</Button>
+        </Group>
+      </Modal>
     </div>
   )
 }
