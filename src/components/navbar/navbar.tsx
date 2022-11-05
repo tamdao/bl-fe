@@ -59,7 +59,7 @@ const useStyles = createStyles((theme) => ({
 export function NavbarSimple() {
   const { classes } = useStyles()
   const { colorScheme, toggleColorSchema } = useThemeContext()
-  console.log('colorScheme', colorScheme)
+
   return (
     <Navbar
       p="xs"

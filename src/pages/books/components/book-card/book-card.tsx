@@ -3,9 +3,9 @@ import React from 'react'
 
 interface BookCardProps {
   id: string
-  title: string
+  name: string
   author: string
-  gender: string
+  genre: string
   thumbnailUrl: string
 }
 
@@ -23,7 +23,7 @@ const useStyles = createStyles((theme) => ({
   author: {
     color: theme.colors.dark[2],
   },
-  gender: {
+  genre: {
     position: 'absolute',
     right: theme.spacing.sm,
     bottom: theme.spacing.sm,
@@ -37,13 +37,13 @@ const useStyles = createStyles((theme) => ({
 
 export function BookCard(props: BookCardProps) {
   const { classes } = useStyles()
-  const { title, author, gender, thumbnailUrl } = props
+  const { name, author, genre, thumbnailUrl } = props
   return (
     <div className={classes.container}>
       <Paper className={classes.imageWrapper} shadow="md">
-        <Image radius="md" src={thumbnailUrl} alt={title} height={360} />
-        <Badge className={classes.gender} color="dark">
-          {gender}
+        <Image radius="md" src={thumbnailUrl} alt={name} height={360} />
+        <Badge className={classes.genre} color="dark">
+          {genre}
         </Badge>
         <Badge className={classes.process} color="dark">
           70%
@@ -51,7 +51,7 @@ export function BookCard(props: BookCardProps) {
       </Paper>
       <div>
         <Title order={4} className={classes.title} weight={500}>
-          {title}
+          {name}
         </Title>
         <Text size="sm" className={classes.author}>
           {author}

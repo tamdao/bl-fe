@@ -27,7 +27,9 @@ function RootApp() {
       />
       <BrowserRouter>
         <ModalsProvider>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
         </ModalsProvider>
       </BrowserRouter>
     </MantineProvider>
@@ -37,11 +39,9 @@ function RootApp() {
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <RootApp />
-      </ThemeProvider>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <RootApp />
+    </ThemeProvider>
   </React.StrictMode>
 )
 

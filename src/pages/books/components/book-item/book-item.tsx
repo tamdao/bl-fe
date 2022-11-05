@@ -2,45 +2,30 @@ import { createStyles, Paper, Image, Title, Text, Group } from '@mantine/core'
 import React from 'react'
 
 interface BookItemProps {
-  title: string
+  name: string
   author: string
   thumbnailUrl: string
 }
 
 const useStyles = createStyles((theme) => ({
   container: {},
-  imageWrapper: {
-    position: 'relative',
-    marginBottom: theme.spacing.md,
-  },
   title: {
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
   },
   author: {
     color: theme.colors.dark[2],
   },
-  gender: {
-    position: 'absolute',
-    right: theme.spacing.sm,
-    bottom: theme.spacing.sm,
-  },
 }))
 
 export function BookItem(props: BookItemProps) {
   const { classes } = useStyles()
-  const { title, author, thumbnailUrl } = props
+  const { name, author, thumbnailUrl } = props
   return (
     <Group className={classes.container}>
-      <Image
-        radius="md"
-        src={thumbnailUrl}
-        alt={title}
-        height={90}
-        width={60}
-      />
+      <Image radius="md" src={thumbnailUrl} alt={name} height={90} width={60} />
       <div>
         <Title order={4} className={classes.title} weight={500}>
-          {title}
+          {name}
         </Title>
         <Text size="sm" className={classes.author}>
           {author}
