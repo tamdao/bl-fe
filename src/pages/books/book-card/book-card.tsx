@@ -28,6 +28,11 @@ const useStyles = createStyles((theme) => ({
     right: theme.spacing.sm,
     bottom: theme.spacing.sm,
   },
+  process: {
+    position: 'absolute',
+    top: theme.spacing.sm,
+    left: theme.spacing.sm,
+  },
 }))
 
 export function BookCard(props: BookCardProps) {
@@ -39,6 +44,9 @@ export function BookCard(props: BookCardProps) {
         <Image radius="md" src={thumbnailUrl} alt={title} height={360} />
         <Badge className={classes.gender} color="dark">
           {gender}
+        </Badge>
+        <Badge className={classes.process} color="dark">
+          70%
         </Badge>
       </Paper>
       <div>
