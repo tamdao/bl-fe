@@ -59,7 +59,12 @@ export function NavbarSimple() {
   const { classes } = useStyles()
 
   return (
-    <Navbar width={{ base: 300 }} p="xs">
+    <Navbar
+      p="xs"
+      hiddenBreakpoint="sm"
+      hidden={true}
+      width={{ sm: 200, lg: 300 }}
+    >
       <Navbar.Section mb="xl">
         <Text weight={500} mb="sm">
           Library

@@ -1,5 +1,5 @@
 import { Divider, Group, Title } from '@mantine/core'
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 
 interface HeaderSimpleProps {
   title: string
@@ -8,6 +8,7 @@ interface HeaderSimpleProps {
 
 export function HeaderSimple(props: HeaderSimpleProps) {
   const { title, rightComponent } = props
+
   return (
     <div>
       <Group position="apart" pb="md">
