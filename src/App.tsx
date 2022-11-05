@@ -1,8 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './providers'
-import { Auth } from './pages'
-import { Books } from './pages/books/books'
+import { Auth, Books } from './pages'
 import { Layout, RequireAuth } from './components'
 
 function App() {

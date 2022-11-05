@@ -8,6 +8,7 @@ import {
 } from '@mantine/core'
 import { IconCircleCaretRight, IconCirclePlus, IconMoon2 } from '@tabler/icons'
 import React from 'react'
+import { useThemeContext } from '../../providers/theme/theme'
 
 const useStyles = createStyles((theme) => ({
   mainLink: {
@@ -57,7 +58,8 @@ const useStyles = createStyles((theme) => ({
 
 export function NavbarSimple() {
   const { classes } = useStyles()
-
+  const { colorScheme, toggleColorSchema } = useThemeContext()
+  console.log('colorScheme', colorScheme)
   return (
     <Navbar
       p="xs"
@@ -105,7 +107,10 @@ export function NavbarSimple() {
           Settings
         </Text>
         <div>
-          <UnstyledButton className={classes.mainLink}>
+          <UnstyledButton
+            className={classes.mainLink}
+            onClick={() => toggleColorSchema()}
+          >
             <div className={classes.mainLinkInner}>
               <IconMoon2
                 size={20}
@@ -114,7 +119,10 @@ export function NavbarSimple() {
               />
               <span>Dark Mode</span>
             </div>
-            <Switch className={classes.switch} />
+            <Switch
+              checked={colorScheme === 'dark'}
+              className={classes.switch}
+            />
           </UnstyledButton>
         </div>
       </Navbar.Section>

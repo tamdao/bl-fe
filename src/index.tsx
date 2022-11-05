@@ -6,31 +6,41 @@ import { Global, MantineProvider } from '@mantine/core'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter } from 'react-router-dom'
 import { ModalsProvider } from '@mantine/modals'
+import { ThemeProvider, useThemeContext } from './providers/theme/theme'
 
 const queryClient = new QueryClient()
+
+function RootApp() {
+  const { colorScheme } = useThemeContext()
+  return (
+    <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+      <Global
+        styles={() => ({
+          '*, *::before, *::after': {
+            boxSizing: 'border-box',
+          },
+
+          body: {
+            fontSize: 14,
+          },
+        })}
+      />
+      <BrowserRouter>
+        <ModalsProvider>
+          <App />
+        </ModalsProvider>
+      </BrowserRouter>
+    </MantineProvider>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
-        <Global
-          styles={() => ({
-            '*, *::before, *::after': {
-              boxSizing: 'border-box',
-            },
-
-            body: {
-              fontSize: 14,
-            },
-          })}
-        />
-        <BrowserRouter>
-          <ModalsProvider>
-            <App />
-          </ModalsProvider>
-        </BrowserRouter>
-      </MantineProvider>
+      <ThemeProvider>
+        <RootApp />
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
 )
