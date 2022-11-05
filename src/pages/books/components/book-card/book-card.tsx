@@ -7,6 +7,7 @@ interface BookCardProps {
   author: string
   genre: string
   thumbnailUrl: string
+  onClick: () => void
 }
 
 const useStyles = createStyles((theme) => ({
@@ -37,9 +38,9 @@ const useStyles = createStyles((theme) => ({
 
 export function BookCard(props: BookCardProps) {
   const { classes } = useStyles()
-  const { name, author, genre, thumbnailUrl } = props
+  const { name, author, genre, thumbnailUrl, onClick } = props
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onClick={onClick}>
       <Paper className={classes.imageWrapper} shadow="md">
         <Image radius="md" src={thumbnailUrl} alt={name} height={360} />
         <Badge className={classes.genre} color="dark">
